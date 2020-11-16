@@ -12,7 +12,7 @@
 #define REMOVE_USER -1
 #define MAX_LEN 25
 #define JSON_OUT "{\"username\": \"%s\", \"password\": \"%s\", \"balance\": \"%f\"}\n"
-#define JSON_IN "{\"username\": \"%[^\"]\", \"password\": \"%[^\"]\", \"balance\": \"%f\"}"
+#define JSON_IN "{\"username\": \"%[^\"]\", \"password\": \"%[^\"]\", \"balance\": \"%f\"}\n"
 
 typedef struct {
 	char username[MAX_LEN];
@@ -24,5 +24,5 @@ FILE* loadFile(char* filename, char* type);
 int getListCount();
 void updateUserCount(int offset);
 void addNewAccount(BankAccount bankAccount);
-void getAllAccounts();
+void getUserAccount(char* username, char* password, BankAccount *user);
 #endif

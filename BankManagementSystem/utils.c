@@ -45,20 +45,19 @@ void addNewAccount(BankAccount bankAccount) {
 	}
 }
 
-void getAllAccounts() {
+void getUserAccount(char* username, char* password, BankAccount *user) {
+	
 	int total_count = getListCount();
 	FILE* file = loadFile(DATABASE_FILE, "r");
 	if (file != NULL) {
-		BankAccount* accounts;
-		accounts = calloc(total_count, sizeof(BankAccount));
 		for (int i = 0; i < total_count; i++) {
-			BankAccount reader;
-			fscanf_s(file, JSON_IN, reader.username, MAX_LEN, reader.password, MAX_LEN, &reader.balance);
-			*(accounts + i) = reader;
-
-			printf(JSON_OUT, (accounts + i)->username, (accounts + i)->password, (accounts+i)->balance);
+			BankAccount hit;
+			fscanf_s(file, JSON_IN, hit.username, MAX_LEN, hit.password, MAX_LEN, &hit.balance);
+			if (strcmp(hit.username, username) == 0 && strcmp(hit.password, password) == 0) {
+				//printf(JSON_OUT, hit.username, hit.password, hit.balance);
+				*user = hit;
+			}
 		}
-
-		free(accounts);
 	}
 }
+
