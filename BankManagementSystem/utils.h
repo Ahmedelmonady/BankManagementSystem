@@ -10,7 +10,7 @@
 #define COUNT "Count.txt"
 #define ADD_USER 1
 #define REMOVE_USER -1
-#define MAX_CHARS 25
+#define MAX_LEN 25
 #define JSON_OUT ""
 #define JSON_IN ""
 
