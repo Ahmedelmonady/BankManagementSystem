@@ -21,5 +21,5 @@ typedef struct {
 }BankAccount;
 
 void initDataFiles();
-
+FILE* loadFile(char* filename, char* type);
 #endif

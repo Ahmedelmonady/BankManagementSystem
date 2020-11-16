@@ -16,3 +16,11 @@ void initDataFiles(){
 		fclose(file);
 	}
 }
+
+FILE* loadFile(char* filename, char* type) {
+	FILE* file;
+	fopen_s(&file, filename, type);
+	if (file == NULL)
+		return NULL;
+	return file;
+}
