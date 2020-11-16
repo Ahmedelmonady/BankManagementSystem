@@ -23,4 +23,5 @@ typedef struct {
 void initDataFiles();
 FILE* loadFile(char* filename, char* type);
 int getListCount();
+void updateUserCount(int offset);
 #endif
