@@ -29,9 +29,19 @@ int getListCount() {
 	if (file != NULL) {
 		fscanf_s(file, "%d", &count, MAX_LEN);
 
-		printf("%d", count);
+		fclose(file);
 
+		return count;
+	}
+	else return -1;
+}
+
+void updateUserCount(int offset) {
+	int count = getListCount();
+	count += offset;
+	FILE* file = loadFile(COUNT_FILE, "r+");
+	if (file != NULL) {
+		fprintf_s(file, "%d", count);
 		fclose(file);
 	}
-	else printf("NULL");
 }
