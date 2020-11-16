@@ -24,4 +24,5 @@ FILE* loadFile(char* filename, char* type);
 int getListCount();
 void updateUserCount(int offset);
 void addNewAccount(BankAccount bankAccount);
+void getAllAccounts();
 #endif
