@@ -61,3 +61,18 @@ void getUserAccount(char* username, char* password, BankAccount *user) {
 	}
 }
 
+int checkUsernameExists(char* username) {
+	int total_count = getListCount();
+	FILE* file = loadFile(DATABASE_FILE, "r");
+	if (file != NULL) {
+		for (int i = 0; i < total_count; i++) {
+			BankAccount hit;
+			fscanf_s(file, JSON_IN, hit.username, MAX_LEN, hit.password, MAX_LEN, &hit.balance);
+			if (strcmp(hit.username, username) == 0 ) {
+				return 1; //exists
+			}
+		}
+		return -1; //couldn't retrieve data
+	}
+	return 0;//doesnot exist
+}

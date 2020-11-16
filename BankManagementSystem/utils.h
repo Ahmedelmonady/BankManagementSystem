@@ -25,4 +25,5 @@ int getListCount();
 void updateUserCount(int offset);
 void addNewAccount(BankAccount bankAccount);
 void getUserAccount(char* username, char* password, BankAccount *user);
+int checkUsernameExists(char* username);
 #endif
