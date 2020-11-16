@@ -2,8 +2,7 @@
 
 
 FILE* loadFile(char* filename, char* type) {
-	FILE* file;
-	fopen_s(&file, filename, type);
+	FILE* file = fopen(filename, type);
 	if (file == NULL)
 		return NULL;
 	return file;
