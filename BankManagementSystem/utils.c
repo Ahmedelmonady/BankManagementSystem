@@ -72,7 +72,45 @@ int checkUsernameExists(char* username) {
 				return 1; //exists
 			}
 		}
-		return -1; //couldn't retrieve data
+		return 0; //couldn't retrieve data
 	}
 	return 0;//doesnot exist
+}
+
+void modifyAccountBalance(char* username, float amount, int operation) {
+	int total_count = getListCount();
+	FILE* file = loadFile(DATABASE_FILE, "r");
+	if (file != NULL) {
+		loadAllAccounts();
+		for (int i = 0; i < total_count; i++) {
+			if (strcmp(Accounts[i].username, username) == 0) {
+				Accounts[i].balance = Accounts[i].balance + (operation * amount);
+			}
+		}
+	}
+	fclose(file);
+
+	writeAllAccounts();
+}
+
+void loadAllAccounts() {
+	int total_count = getListCount();
+	FILE* file = loadFile(DATABASE_FILE, "r");
+	if (file != NULL) {
+		for (int i = 0; i < total_count; i++) {
+			BankAccount hit;
+			fscanf_s(file, JSON_IN, hit.username, MAX_LEN, hit.password, MAX_LEN, &hit.balance);
+			Accounts[i] = hit;
+		}
+	}
+	fclose(file);
+}
+
+void writeAllAccounts() {
+	FILE* file = loadFile(DATABASE_FILE, "w");
+	for (int i = 0; i < getListCount(); i++) {
+		if (file != NULL) {
+			fprintf_s(file, JSON_OUT, Accounts[i].username, Accounts[i].password, Accounts[i].balance);
+		}
+	}
 }
