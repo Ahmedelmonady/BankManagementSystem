@@ -2,19 +2,17 @@
 
 void initDataFiles(){
 	FILE* file;
-	fopen_s(&file, COUNT, "r+");
-	if (file == NULL) {
-		fopen_s(&file, COUNT, "wb+");
+	fopen_s(&file, COUNT_FILE, "w+");
 
+	if (ftell(file) == 0) {
 		fprintf_s(file, "%d", 0);
-
-		fflush(file);
-		fclose(file);
-
-		fopen_s(&file, DATABASE, "w+");
-		fflush(file);
-		fclose(file);
 	}
+	fclose(file);
+
+	fopen_s(&file, DATABASE_FILE, "w+");
+
+	fclose(file);
+
 }
 
 FILE* loadFile(char* filename, char* type) {
@@ -23,4 +21,17 @@ FILE* loadFile(char* filename, char* type) {
 	if (file == NULL)
 		return NULL;
 	return file;
+}
+
+int getListCount() {
+	FILE* file = loadFile(COUNT_FILE, "r+");
+	int count;
+	if (file != NULL) {
+		fscanf_s(file, "%d", &count, MAX_LEN);
+
+		printf("%d", count);
+
+		fclose(file);
+	}
+	else printf("NULL");
 }
