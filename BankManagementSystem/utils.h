@@ -6,8 +6,8 @@
 #include "string.h"
 #include "stdlib.h"
 
-#define DATABASE "Data-BankDb.bin"
-#define COUNT "Data-Count.bin"
+#define DATABASE_FILE "Data-BankDb.bin"
+#define COUNT_FILE "Data-Count.bin"
 #define ADD_USER 1
 #define REMOVE_USER -1
 #define MAX_LEN 25
@@ -22,4 +22,5 @@ typedef struct {
 
 void initDataFiles();
 FILE* loadFile(char* filename, char* type);
+int getListCount();
 #endif
