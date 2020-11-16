@@ -6,8 +6,8 @@
 #include "string.h"
 #include "stdlib.h"
 
-#define DATABASE "BankDb.txt"
-#define COUNT "Count.txt"
+#define DATABASE "Data-BankDb.bin"
+#define COUNT "Data-Count.bin"
 #define ADD_USER 1
 #define REMOVE_USER -1
 #define MAX_LEN 25
@@ -19,5 +19,7 @@ typedef struct {
 	char password[MAX_LEN];
 	float balance;
 }BankAccount;
+
+void initDataFiles();
 
 #endif
