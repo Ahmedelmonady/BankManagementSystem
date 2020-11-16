@@ -14,4 +14,11 @@
 #define JSON_OUT ""
 #define JSON_IN ""
 
+typedef struct {
+	char username[MAX_LEN];
+	char password[MAX_LEN];
+	float balance;
+	char Name[MAX_LEN];
+}BankAccount;
+
 #endif
