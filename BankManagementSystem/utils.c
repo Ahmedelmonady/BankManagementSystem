@@ -1,19 +1,5 @@
 #include "utils.h"
 
-void initDataFiles(){
-	FILE* file;
-	fopen_s(&file, COUNT_FILE, "w+");
-
-	if (ftell(file) == 0) {
-		fprintf_s(file, "%d", 0);
-	}
-	fclose(file);
-
-	fopen_s(&file, DATABASE_FILE, "w+");
-
-	fclose(file);
-
-}
 
 FILE* loadFile(char* filename, char* type) {
 	FILE* file;
@@ -43,5 +29,18 @@ void updateUserCount(int offset) {
 	if (file != NULL) {
 		fprintf_s(file, "%d", count);
 		fclose(file);
+	}
+}
+
+void addNewAccount(BankAccount bankAccount) {
+	FILE* file = loadFile(DATABASE_FILE, "a+");
+	if (file != NULL) {
+		fprintf_s(file, JSON_OUT, bankAccount.username, bankAccount.password, bankAccount.balance);
+		updateUserCount(ADD_USER);
+		fflush(file);
+		fclose(file);
+	}
+	else {
+		printf("Failed to add user!");
 	}
 }
