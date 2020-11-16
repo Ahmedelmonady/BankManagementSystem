@@ -11,14 +11,13 @@
 #define ADD_USER 1
 #define REMOVE_USER -1
 #define MAX_LEN 25
-#define JSON_OUT ""
-#define JSON_IN ""
+#define JSON_OUT "{\"username\": \"%s\", \"password\": \"%s\", \"balance\": \"%f\"}\n"
+#define JSON_IN "{\"username\": \"%[^\"]\", \"password\": \"%[^\"]\", \"balance\": \"%f\"}"
 
 typedef struct {
 	char username[MAX_LEN];
 	char password[MAX_LEN];
 	float balance;
-	char Name[MAX_LEN];
 }BankAccount;
 
 #endif
